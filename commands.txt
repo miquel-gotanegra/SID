@@ -1,0 +1,9 @@
+java -cp jade/lib/jade.jar:classes jade.Boot -gui // ́'A:myPackage.MyAgent(arg1 arg2)'
+
+javac -cp jade/lib/jade.jar -d classes jade/src/examples/PingAgent/PingAgent.java
+
+ENTREGA 1
+javac -cp jade/lib/jade.jar -d classes ENTREGABLE1/Termometro.java //Termostato.java
+
+bdi4jade
+javac -cp jade/lib/jade.jar:jade/bdi4jade.jar:jade/commons-logging-1.2.jar -d classes BDI/E1/HelloAgent.java
