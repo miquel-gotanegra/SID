@@ -1,4 +1,4 @@
-package agent;
+package TESTEO;
 
 import bdi4jade.core.SingleCapabilityAgent;
 import bdi4jade.goal.Goal;

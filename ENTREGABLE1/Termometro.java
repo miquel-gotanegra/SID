@@ -113,7 +113,7 @@ public class Termometro extends Agent {
                 ServiceDescription sd = new ServiceDescription();
                 sd.setType("Termostato");
                 dfa.addServices(sd);
-                SearchConstraints sc = new SearchConstraints();
+                SearchConstraints sc = new SearchConstraints(10);
 
                 DFAgentDescription[] results = DFService.search(myAgent, dfa, sc);
                 if (results.length > 0) {
