@@ -113,18 +113,16 @@ public class Termometro extends Agent {
                 ServiceDescription sd = new ServiceDescription();
                 sd.setType("Termostato");
                 dfa.addServices(sd);
-                SearchConstraints sc = new SearchConstraints(10);
 
-                DFAgentDescription[] results = DFService.search(myAgent, dfa, sc);
+                DFAgentDescription[] results = DFService.search(myAgent, dfa);
                 if (results.length > 0) {
-                    for(int i = 0; i < results.length; ++i){
+                    for (DFAgentDescription result : results) {
                         ACLMessage msg_send = new ACLMessage(ACLMessage.INFORM);
-                        DFAgentDescription dfd = results[i];
-                        AID t = dfd.getName();
+                        AID t = result.getName();
                         msg_send.addReceiver(t);
                         msg_send.setContent(Integer.toString(ACT_TEMPERATURE));
                         send(msg_send);
-                      }
+                    }
                 } else System.out.println("No se han encontrado termostatos..");
             } catch (FIPAException e) {
                 e.printStackTrace();

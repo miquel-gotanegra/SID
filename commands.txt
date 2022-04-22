@@ -6,5 +6,5 @@ ENTREGA 1
 javac -cp jade/lib/jade.jar -d classes ENTREGABLE1/Termometro.java //Termostato.java
 
 bdi4jade
-javac -cp jade/lib/jade.jar:jade/bdi4jade.jar:jade/commons-logging-1.2.jar -d classes ENTREGABLE2/Player.java 
-java -cp jade/lib/jade.jar:jade/bdi4jade.jar:jade/commons-logging-1.2.jar:classes jade.Boot -gui 'playa:Entregable.Player(1,2,3,4)'
+javac -cp jade/lib/jade.jar:jade/bdi4jade.jar:jade/commons-logging-1.2.jar -d classes ENTREGABLE2/Prisionero.java 
+java -cp jade/lib/jade.jar:jade/bdi4jade.jar:jade/commons-logging-1.2.jar:classes jade.Boot -gui 'playa:Entregable.Prisionero(1,2,3,4)'
