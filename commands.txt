@@ -7,4 +7,5 @@ javac -cp jade/lib/jade.jar -d classes ENTREGABLE1/Termometro.java //Termostato.
 
 bdi4jade
 javac -cp jade/lib/jade.jar:jade/bdi4jade.jar:jade/commons-logging-1.2.jar -d classes ENTREGABLE2/Prisionero.java 
-java -cp jade/lib/jade.jar:jade/bdi4jade.jar:jade/commons-logging-1.2.jar:classes jade.Boot -gui 'playa:Entregable.Prisionero(1,2,3,4)'
+java -cp jade/lib/jade.jar:jade/bdi4jade.jar:jade/commons-logging-1.2.jar:classes jade.Boot -gui 'BIG_AL:Entregable.Prisionero(1,3,3,6)'
+5,5,1,0

@@ -21,11 +21,10 @@ import jade.lang.acl.ACLMessage;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.HashMap;
 
 
 public class Prisionero extends SingleCapabilityAgent {
-    String[] historial;
-
     String color;
     final String ANSI_RESET = "\u001B[0m";
 
@@ -34,6 +33,15 @@ public class Prisionero extends SingleCapabilityAgent {
         int x = ran.nextInt(6) +31;
         color = "\u001B[" + String.valueOf(x) + "m";
     };
+
+    private static HashMap<String, String>convertArrayListToHashMap(ArrayList<DFAgentDescription> arrayList)
+    {
+        HashMap<String, String> hashMap = new HashMap<>();
+        for (DFAgentDescription str : arrayList) {
+            hashMap.put(str.getName().getLocalName(), "");
+        }
+        return hashMap;
+    }
     protected void init(){
 
         Capability cap = this.getCapability();
@@ -51,7 +59,7 @@ public class Prisionero extends SingleCapabilityAgent {
                 beliefBase.addBelief(new TransientBelief("DC",Integer.parseInt((String) args[2])));
                 beliefBase.addBelief(new TransientBelief("DD",Integer.parseInt((String) args[3])));
 
-                beliefBase.addBelief(new TransientBelief("historial",historial));
+                beliefBase.addOrUpdateBelief(new TransientBelief("historial", new HashMap<String, ArrayList<String>>()));
 
                 beliefBase.addBelief(new TransientBelief("score",0));
 
@@ -142,6 +150,13 @@ public class Prisionero extends SingleCapabilityAgent {
             Capability cap = this.getCapability();
             BeliefBase beliefBase = cap.getBeliefBase();
             beliefBase.addOrUpdateBelief(new TransientBelief("jugadores_pendientes", results));
+            
+            HashMap<String, String> j_ini = convertArrayListToHashMap(results);
+
+            //solo nos hace falta el movimiento que hemos hecho antes con los jugadores en los que vamos en el primer turno, ya que si vamos segundos hacemos la decision al momento
+            beliefBase.addOrUpdateBelief(new TransientBelief("lastMove", j_ini));
+            
+
             setEndState(Plan.EndState.SUCCESSFUL);
             }catch(FIPAException e){System.out.println("error FindPlayers");}
             //System.out.println("FIND PLAYERS");
@@ -166,7 +181,7 @@ public class Prisionero extends SingleCapabilityAgent {
                 DFAgentDescription j = jugadores_pendientes.get(index);
                 jugadores_pendientes.remove(index);
                 beliefBase.addOrUpdateBelief(new TransientBelief("jugadores_pendientes", jugadores_pendientes));
-            
+                
                 System.out.println(color+"El prisionero " + getAID().getLocalName() +" ha empezado a jugar con "+j.getName().getLocalName()+ ANSI_RESET);
 
                 int CC = (int) beliefBase.getBelief("CC").getValue();
@@ -182,6 +197,9 @@ public class Prisionero extends SingleCapabilityAgent {
                     selectedPlay = "D";
                 }
 
+                HashMap<String,String> lastMove = (HashMap<String,String>)beliefBase.getBelief("lastMove").getValue();
+                lastMove.put(j.getName().getLocalName(),selectedPlay);
+                beliefBase.addOrUpdateBelief(new TransientBelief("lastMove", lastMove));
 
                 ACLMessage msg = new ACLMessage(ACLMessage.INFORM);
                 msg.addReceiver(j.getName());
@@ -208,23 +226,67 @@ public class Prisionero extends SingleCapabilityAgent {
             if (msg != null){
                 if ((msg.getPerformative() == ACLMessage.INFORM) && msg.getOntology().equals("play") && (msg.getContent().equals("C")||msg.getContent().equals("D")))
                 {
+                    int CC = (int)beliefBase.getBelief("CC").getValue();
+                    int DC = (int)beliefBase.getBelief("DC").getValue();
+                    int CD = (int) beliefBase.getBelief("CD").getValue();
+                    int DD = (int) beliefBase.getBelief("DD").getValue();
+
                     String selectedPlay = "";
                     if(msg.getContent().equals("C")){
-                        int CC = (int)beliefBase.getBelief("CC").getValue();
-                        int DC = (int)beliefBase.getBelief("DC").getValue();
-
                         if(Math.min(CC,DC) == CC)   selectedPlay = "C";
                         else    selectedPlay = "D";
                     }
                     else if (msg.getContent().equals("D")){
-                        int CD = (int) beliefBase.getBelief("CD").getValue();
-                        int DD = (int) beliefBase.getBelief("DD").getValue();
-
                         if(Math.min(CD,DD)== CD)    selectedPlay = "C";
                         else selectedPlay = "D";
                     } 
                    
-                    System.out.println(color+"El prisionero " + getAID().getLocalName() +" ha recibido "+msg.getContent() + " de " + msg.getSender().getLocalName() + " y ha respondido "+ selectedPlay + ANSI_RESET);
+                    System.out.print(color+ getAID().getLocalName() +": ha recibido "+msg.getContent() + " de " + msg.getSender().getLocalName() + " y ha respondido "+ selectedPlay +"." + ANSI_RESET);
+
+                    HashMap<String,String> lastMove = (HashMap<String,String>)beliefBase.getBelief("lastMove").getValue();
+                    //si contiene la key significa que nosotros vamos primero en los turnos
+                    String par;
+                    String texto;
+                    System.out.print(color);
+                    if(lastMove.containsKey(msg.getSender().getLocalName())){
+                        //System.out.print("voy primero ");
+                        par = lastMove.get(msg.getSender().getLocalName())+msg.getContent();
+                        texto = "["+getAID().getLocalName()+": "+ lastMove.get(msg.getSender().getLocalName()) + "," +msg.getSender().getLocalName()+": "+  msg.getContent()+"]";
+                        //System.out.println(texto);
+                        lastMove.put(msg.getSender().getLocalName(),selectedPlay);
+                        beliefBase.addOrUpdateBelief(new TransientBelief("lastMove", lastMove));
+                    }
+                    //si no, vamos segundos
+                    else{
+                        //System.out.print("voy segundo");
+                        texto = "["+msg.getSender().getLocalName()+": "+ msg.getContent() + "," +getAID().getLocalName()+": "+ selectedPlay +"]";
+                        //System.out.println(texto);
+                        
+                        //nuestro agente siempre es la X de XY
+                        par = selectedPlay+msg.getContent();
+                       // System.out.print("last couple: "+par);
+                    }
+                    int score = (int) beliefBase.getBelief("score").getValue();
+                    if(par.equals("CC"))score +=CC; 
+                    else if(par.equals("CD")) score +=CD; 
+                    else if(par.equals("DC")) score +=DC; 
+                    else if(par.equals("DD")) score +=DD; 
+                    beliefBase.addOrUpdateBelief(new TransientBelief("score", score));
+                    System.out.print(" NEW SCORE =");
+                    System.out.println(score);
+
+                    //System.out.println("SUSSY");
+                    HashMap<String,ArrayList<String>> historial = (HashMap<String,ArrayList<String>>)beliefBase.getBelief("historial").getValue();
+                    //System.out.println("ADD");
+                    if(!historial.containsKey(msg.getSender().getLocalName())) historial.put(msg.getSender().getLocalName(),new ArrayList<String>());
+                    historial.get(msg.getSender().getLocalName()).add(texto);
+                    //System.out.println("PRINT");
+                    System.out.print("Historial con "+msg.getSender().getLocalName()+": ");
+                    System.out.println(historial.get(msg.getSender().getLocalName()));
+                    beliefBase.addOrUpdateBelief(new TransientBelief("historial", historial));
+
+                    System.out.println(ANSI_RESET);
+    
                     ACLMessage answer = new ACLMessage(ACLMessage.INFORM);
                     answer.addReceiver(msg.getSender());
                     answer.setOntology("play");
