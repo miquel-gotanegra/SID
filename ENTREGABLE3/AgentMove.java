@@ -59,7 +59,7 @@ public class AgentMove extends SingleCapabilityAgent{
         	
         	beliefBase.addBelief(new TransientBelief("Trabajo","AgenteRecolector"));
         	
-			beliefBase.addBelief(new TransientBelief("posicion","node5"))
+			beliefBase.addBelief(new TransientBelief("posicion","node5"));
         	
         	beliefBase.addBelief(new TransientBelief("PATH",PATH));
         	
