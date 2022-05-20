@@ -1,0 +1,359 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:myMap="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorAlmacenador">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#worksAs"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Almacenador">
+                <rdf:type>
+                  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Trabajo"/>
+                </rdf:type>
+              </owl:NamedIndividual>
+            </owl:hasValue>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#canCarry"/>
+        </owl:onProperty>
+        <owl:hasValue>
+          <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#500">
+            <rdf:type>
+              <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Peso"/>
+            </rdf:type>
+          </owl:NamedIndividual>
+        </owl:hasValue>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#worksAs"/>
+        </owl:onProperty>
+        <owl:hasValue rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Almacenador"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Actores que trabajan como almacenador</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Peso">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Conceptos"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Trabajo">
+    <rdfs:comment>Esta classe define los distintos trabajos que puede realizar un Actor</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Conceptos">
+    <rdfs:comment>Classes abstractas que nos ayudan con las definiciones</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#NodeAlmacenamiento">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#AgentsOnTop"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorAlmacenador"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+    </rdfs:subClassOf>
+    <rdfs:comment>nodo que tiene un ActorAlmacenamiento encima</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Located_in"/>
+        </owl:onProperty>
+        <owl:someValuesFrom>
+          <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+        </owl:someValuesFrom>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Classe para representar los diferetnes Actores que estan por el mapa</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#AgenteRecolectorQuePuedeDescargar">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorRecolector"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Located_in"/>
+            </owl:onProperty>
+            <owl:someValuesFrom>
+              <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#NodeRecolector"/>
+            </owl:someValuesFrom>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorRecolector"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#puedeDescargar"/>
+        </owl:onProperty>
+        <owl:hasValue>
+          <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Sí">
+            <rdf:type>
+              <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#booleans"/>
+            </rdf:type>
+          </owl:NamedIndividual>
+        </owl:hasValue>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Actores que trabajan como recolector y que estan situadoes en un NodeRecolector</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#booleans">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Conceptos"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node">
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#contiguoA"/>
+        </owl:onProperty>
+        <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Con esta classe representamos cada uno de los nodos del grafo, asi como sus relaciones con otros nodos o actores</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Minerales"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorExplorador">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#worksAs"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Explorador">
+                <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Trabajo"/>
+              </owl:NamedIndividual>
+            </owl:hasValue>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#worksAs"/>
+        </owl:onProperty>
+        <owl:hasValue rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Explorador"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Actores que trabajan como explorador</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorRecolector">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#worksAs"/>
+            </owl:onProperty>
+            <owl:hasValue>
+              <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Recolector">
+                <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Trabajo"/>
+              </owl:NamedIndividual>
+            </owl:hasValue>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#canCarry"/>
+        </owl:onProperty>
+        <owl:hasValue>
+          <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#50">
+            <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Peso"/>
+          </owl:NamedIndividual>
+        </owl:hasValue>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#worksAs"/>
+        </owl:onProperty>
+        <owl:hasValue rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Recolector"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Actores que trabajan como recolector</rdfs:comment>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#NodeRecolector">
+    <owl:equivalentClass>
+      <owl:Class>
+        <owl:intersectionOf rdf:parseType="Collection">
+          <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+          <owl:Restriction>
+            <owl:onProperty>
+              <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#contiguoA"/>
+            </owl:onProperty>
+            <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#NodeAlmacenamiento"/>
+          </owl:Restriction>
+        </owl:intersectionOf>
+      </owl:Class>
+    </owl:equivalentClass>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+    <rdfs:subClassOf>
+      <owl:Restriction>
+        <owl:onProperty>
+          <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#esNodoRecolector"/>
+        </owl:onProperty>
+        <owl:hasValue rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Sí"/>
+      </owl:Restriction>
+    </rdfs:subClassOf>
+    <rdfs:comment>Nodo adyacente a un NodeAlmacenamiento</rdfs:comment>
+  </owl:Class>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#canCarry">
+    <rdfs:comment>nos indica la capacidad de carga/peso de un actor/mineral</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#esNodoRecolector">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:comment>nos indica que este nodo es adyacente a un nodoAlmacenamiento</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#contiguoA">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <owl:inverseOf rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#contiguoA"/>
+    <rdfs:comment>nos indica que los dos nodos son adyacentes</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#workers">
+    <owl:inverseOf>
+      <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#worksAs"/>
+    </owl:inverseOf>
+    <rdfs:comment>nos indica que actores trabajan de este trabajo</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#puedeDescargar">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:comment>nos indica que hay un actorAlmacenamiento en un nodo adyacente al que estamos, y por tanto que podemos descargar la mochila</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#pesa">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Located_in">
+    <rdfs:comment>nos indica en que nodo se encuentra este actor</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#worksAs">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <rdfs:comment>nos indica de que trabaja nuestro actor</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:ObjectProperty rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#AgentsOnTop">
+    <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+    <owl:inverseOf rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Located_in"/>
+    <rdfs:comment>Nos dice que actores estan situadoes en este nodo</rdfs:comment>
+  </owl:ObjectProperty>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Oro">
+    <myMap:pesa>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#15">
+        <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Peso"/>
+      </owl:NamedIndividual>
+    </myMap:pesa>
+    <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Minerales"/>
+  </owl:NamedIndividual>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Conceptos"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Minerales"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Trabajo"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#AgenteRecolector">
+    <myMap:Located_in>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node3">
+        <myMap:contiguoA>
+          <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node1">
+            <myMap:contiguoA>
+              <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node2">
+                <myMap:contiguoA rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node1"/>
+                <myMap:contiguoA rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node3"/>
+                <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+              </owl:NamedIndividual>
+            </myMap:contiguoA>
+            <myMap:contiguoA rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node3"/>
+            <myMap:contiguoA>
+              <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node5">
+                <myMap:contiguoA rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node1"/>
+                <myMap:contiguoA>
+                  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node4">
+                    <myMap:contiguoA rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node3"/>
+                    <myMap:contiguoA rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node5"/>
+                    <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+                  </owl:NamedIndividual>
+                </myMap:contiguoA>
+                <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+              </owl:NamedIndividual>
+            </myMap:contiguoA>
+            <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+          </owl:NamedIndividual>
+        </myMap:contiguoA>
+        <myMap:contiguoA rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node2"/>
+        <myMap:contiguoA rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node4"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+      </owl:NamedIndividual>
+    </myMap:Located_in>
+    <myMap:worksAs rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Recolector"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
+  </owl:NamedIndividual>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorAlmacenador"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorExplorador"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorRecolector"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Diamante">
+    <myMap:pesa>
+      <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#10">
+        <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Peso"/>
+      </owl:NamedIndividual>
+    </myMap:pesa>
+    <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Minerales"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#No">
+    <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#booleans"/>
+  </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#AgenteAlmacenador">
+    <myMap:Located_in rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node2"/>
+    <myMap:worksAs rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Almacenador"/>
+    <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
+  </owl:NamedIndividual>
+</rdf:RDF>

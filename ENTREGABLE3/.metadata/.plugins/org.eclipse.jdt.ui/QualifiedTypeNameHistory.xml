@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="org.apache.jena.rdf.model.Model"/>
+    <fullyQualifiedTypeName name="java.io.FileInputStream"/>
+    <fullyQualifiedTypeName name="org.apache.jena.rdf.model.InfModel"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="org.apache.jena.rdf.model.Resource"/>
+    <fullyQualifiedTypeName name="org.apache.jena.rdf.model.Statement"/>
+</qualifiedTypeNameHistroy>

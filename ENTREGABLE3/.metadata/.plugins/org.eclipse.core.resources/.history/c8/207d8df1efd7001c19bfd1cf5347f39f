@@ -1,0 +1,119 @@
+package main;
+
+
+import org.apache.jena.ontology.Individual;
+import org.apache.jena.ontology.OntClass;
+import org.apache.jena.ontology.OntDocumentManager;
+import org.apache.jena.ontology.OntModel;
+import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.ontology.OntModelSpec;
+import org.apache.jena.ontology.OntProperty;
+import org.apache.jena.query.Query;
+import org.apache.jena.query.QueryExecution;
+import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QueryFactory;
+import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.Literal;
+import org.apache.jena.rdf.model.Model;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.sparql.core.ResultBinding;
+import org.apache.jena.util.iterator.ExtendedIterator;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Iterator;
+
+
+public class mapa {
+	 	OntModel model;
+	    String JENAPath;
+	    String OntologyFile;
+	    String NamingContext;
+	    OntDocumentManager dm;
+
+	    private static final String MAPA_BASE_URI = "http://www.semanticweb.org/mgota/ontologies/2022/4/myMap";
+	    private static final String MODIFIED_PREFIX = "modified_";
+
+	    public mapa(String _JENA_PATH, String _File, String _NamingContext) {
+	        this.JENAPath = _JENA_PATH;
+	        this.OntologyFile = _File;
+	        this.NamingContext = _NamingContext;
+	    }
+
+	    public void loadOntology() {
+	        System.out.println("· Loading Ontology");
+	        model = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_TRANS_INF);
+	        dm = model.getDocumentManager();
+	        dm.addAltEntry(NamingContext, "file:" + JENAPath + OntologyFile);
+	        model.read(NamingContext);
+	    }
+	    
+
+	    public void releaseOntology() throws FileNotFoundException {
+	        System.out.println("· Releasing Ontology");
+	        if (!model.isClosed()) {
+	            model.write(new FileOutputStream(JENAPath + File.separator + MODIFIED_PREFIX + OntologyFile, false));
+	            model.close();
+	        }
+	    }
+
+	    public void getIndividuals() {
+	        //List of ontology properties
+	        for (Iterator i = model.listIndividuals().toList().iterator(); i.hasNext(); ) {
+	            Individual dummy = (Individual) i.next();
+	            System.out.println("Ontology has individual: ");
+	            System.out.println("   " + dummy);
+	            Property nameProperty = model.getProperty(MAPA_BASE_URI + "#AgentsOnTop");
+	            RDFNode nameValue = dummy.getPropertyValue(nameProperty);
+	            System.out.println("   AgentsOnTop = " + nameValue);
+	        }
+	    }
+	    
+	    public void getClasses() {
+	        //List of ontology classes
+	        Iterator<OntClass> classesIt = model.listNamedClasses().toList().iterator();
+	        while (classesIt.hasNext()) {
+	            OntClass actual = classesIt.next();
+	            System.out.println("Ontology has class: " + actual.getURI());
+	        }
+	    }
+	    
+	    private void testEquivalentClass() {
+	        System.out.println("· Loading Ontology");
+	        OntModel model = ModelFactory.createOntologyModel( OntModelSpec.OWL_MEM_MICRO_RULE_INF);
+	        FileManager.get().readModel( model, "pizza.owl" );
+	        dm = model.getDocumentManager();
+	        dm.addAltEntry(NamingContext, "file:" + JENAPath + File.separator + MODIFIED_PREFIX + OntologyFile);
+	        model.read(NamingContext);
+	        Individual instance = model.getIndividual(MAPA_BASE_URI + "#node2");
+	        if(instance == null) System.out.println("SUS");
+	        boolean isRealItalian = instance.hasOntClass(MAPA_BASE_URI + "#AgentsOnTop");
+	        System.out.println("tiene el node2 alguien encima? " + isRealItalian);
+	        model.close();
+	    }
+	    
+	    public static void main(String args[]) throws FileNotFoundException {
+        System.out.println("Starting tester...");
+        
+        String path = "./";
+        String owlFile = "myMap.owl";
+        String namespace = "myMap";
+        mapa tester = new mapa(path, owlFile, namespace);
+
+        System.out.println("---------------\n\nLoading ontology");
+        tester.loadOntology();
+        
+        
+        System.out.println("---------------\n\nRelease and save ontology");
+        tester.releaseOntology();
+        
+        tester.testEquivalentClass();
+        
+        
+        
+        
+	}
+}
