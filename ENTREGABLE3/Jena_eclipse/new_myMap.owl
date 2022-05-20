@@ -289,11 +289,9 @@
   </owl:NamedIndividual>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Conceptos"/>
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Minerales"/>
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Trabajo"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorAlmacenador"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorExplorador"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorRecolector"/>
     </owl:members>
   </owl:AllDisjointClasses>
   <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#AgenteRecolector">
@@ -333,13 +331,6 @@
     <myMap:worksAs rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Recolector"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
   </owl:NamedIndividual>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorAlmacenador"/>
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorExplorador"/>
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorRecolector"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
   <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Diamante">
     <myMap:pesa>
       <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#10">
@@ -348,6 +339,15 @@
     </myMap:pesa>
     <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Minerales"/>
   </owl:NamedIndividual>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Conceptos"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Minerales"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Node"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Trabajo"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
   <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#No">
     <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#booleans"/>
   </owl:NamedIndividual>
