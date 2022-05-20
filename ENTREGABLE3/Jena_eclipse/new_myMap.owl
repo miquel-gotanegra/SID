@@ -287,13 +287,6 @@
     </myMap:pesa>
     <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Minerales"/>
   </owl:NamedIndividual>
-  <owl:AllDisjointClasses>
-    <owl:members rdf:parseType="Collection">
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorAlmacenador"/>
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorExplorador"/>
-      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorRecolector"/>
-    </owl:members>
-  </owl:AllDisjointClasses>
   <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#AgenteRecolector">
     <myMap:Located_in>
       <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node3">
@@ -339,6 +332,9 @@
     </myMap:pesa>
     <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Minerales"/>
   </owl:NamedIndividual>
+  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#No">
+    <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#booleans"/>
+  </owl:NamedIndividual>
   <owl:AllDisjointClasses>
     <owl:members rdf:parseType="Collection">
       <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
@@ -348,12 +344,16 @@
       <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Trabajo"/>
     </owl:members>
   </owl:AllDisjointClasses>
-  <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#No">
-    <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#booleans"/>
-  </owl:NamedIndividual>
   <owl:NamedIndividual rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#AgenteAlmacenador">
     <myMap:Located_in rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#node2"/>
     <myMap:worksAs rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Almacenador"/>
     <rdf:type rdf:resource="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#Actor"/>
   </owl:NamedIndividual>
+  <owl:AllDisjointClasses>
+    <owl:members rdf:parseType="Collection">
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorAlmacenador"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorExplorador"/>
+      <owl:Class rdf:about="http://www.semanticweb.org/mgota/ontologies/2022/4/myMap#ActorRecolector"/>
+    </owl:members>
+  </owl:AllDisjointClasses>
 </rdf:RDF>
